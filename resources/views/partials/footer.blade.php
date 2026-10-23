@@ -15,7 +15,9 @@
         <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="{{ route('about') }}">About Us</a></li>
         <li><a href="{{ route('services.index') }}">Services</a></li>
-        <li><a href="{{ route('projects') }}">Projects</a></li>
+        @if (config('site.show_projects'))
+          <li><a href="{{ route('projects') }}">Projects</a></li>
+        @endif
         <li><a href="{{ route('contact') }}">Contact Us</a></li>
       </ul>
     </div>

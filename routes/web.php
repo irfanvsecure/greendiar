@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 Route::view('/services', 'services.index')->name('services.index');
-Route::view('/projects', 'projects')->name('projects');
+Route::get('/projects', fn () => config('site.show_projects') ? view('projects') : abort(404))->name('projects');
 Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
 Route::view('/terms-and-conditions', 'legal.terms')->name('terms');
 Route::view('/contact', 'contact')->name('contact');

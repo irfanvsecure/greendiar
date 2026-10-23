@@ -13,7 +13,9 @@
             @endforeach
           </ul>
         </li>
-        <li><a href="{{ route('projects') }}" @class(['current' => request()->routeIs('projects')])>Projects</a></li>
+        @if (config('site.show_projects'))
+          <li><a href="{{ route('projects') }}" @class(['current' => request()->routeIs('projects')])>Projects</a></li>
+        @endif
         <li><a href="{{ route('contact') }}" @class(['current' => request()->routeIs('contact')])>Contact Us</a></li>
         <li class="nav-cta"><a href="{{ route('contact') }}#appointment" class="btn btn-accent">Get in Touch <i class="fa-solid fa-arrow-right"></i></a></li>
       </ul>

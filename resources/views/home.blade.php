@@ -146,6 +146,7 @@
     </div>
   </section>
 
+  @if (config('site.show_projects'))
   <!-- Projects -->
   <section class="section projects" id="projects">
     <div class="container">
@@ -165,6 +166,7 @@
       <div class="catalog-more reveal"><a href="{{ route('projects') }}" class="btn btn-accent">View All Projects <i class="fa-solid fa-arrow-right"></i></a></div>
     </div>
   </section>
+  @endif
 
   @include('partials.testimonials')
 
