@@ -23,8 +23,7 @@ return [
     'map_query' => 'Lahore, Pakistan',
 
     'hours' => [
-        'Monday - Friday' => '07.00 - 23.00',
-        'Saturday' => '07.00 - 23.00',
+        'Monday - Saturday' => '08:00 AM - 05:00 PM',
         'Sunday' => 'Closed',
     ],
 
