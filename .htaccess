@@ -2,5 +2,12 @@
 # Everything outside public/ (.env, storage, database, vendor...) stays unreachable.
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # Send http:// and www. visitors to https://greendiar.ae
+    RewriteCond %{HTTP_HOST} greendiar\.ae$ [NC]
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteRule ^(.*)$ https://greendiar.ae/$1 [R=301,L]
+
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
