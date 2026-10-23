@@ -923,3 +923,33 @@ html.lenis { scroll-behavior: auto; }
   .services.tinted { padding-top: 120px; padding-bottom: 120px; }
   .services.tinted::before, .services.tinted::after { height: 60px; }
 }
+
+/* ========== Mobile & tablet polish ========== */
+/* Decorative titles and image offsets must never widen the page */
+html, body { overflow-x: hidden; overflow-x: clip; }
+.method-card:not(:last-child)::after { pointer-events: none; }
+@media (max-width: 1024px) {
+  .method-card:not(:last-child)::after { display: none; }
+  .why::before { top: 0; bottom: auto; height: 420px; }
+}
+@media (max-width: 767px) {
+  .section { padding: 64px 0; }
+  .bg-title { font-size: 44px; top: -18px; max-width: 100%; overflow: hidden; }
+  .why::before { height: 300px; }
+  .faq-cta { grid-template-columns: 1fr; text-align: left; }
+  .counter-inner { grid-template-columns: repeat(3, 1fr); padding-right: 16px; }
+  .counter-item { padding: 34px 4px; border-bottom: none; border-right: 1px solid rgba(255,255,255,.12); }
+  .counter-item:last-of-type { border-right: none; }
+  .counter-item strong { font-size: 32px; }
+  .counter-item > span { font-size: 13px; display: block; line-height: 1.3; }
+  .project-cta-inner h2 { font-size: 28px; }
+}
+@media (max-width: 767px) {
+  .services.tinted { padding-top: 96px; padding-bottom: 96px; }
+  .services.tinted::before, .services.tinted::after { height: 40px; }
+}
+@media (max-width: 575px) {
+  .form-row.time-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .form-row.time-row > :first-child { grid-column: 1 / -1; }
+  .time-row .field select { padding: 16px 26px 16px 14px; background-position: right 10px center; }
+}
