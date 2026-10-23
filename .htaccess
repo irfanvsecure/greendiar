@@ -1,0 +1,6 @@
+# Serves the site from public/ when the domain's document root is the project folder.
+# Everything outside public/ (.env, storage, database, vendor...) stays unreachable.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
