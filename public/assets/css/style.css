@@ -669,16 +669,38 @@ h2 span, h1 span { font-weight: 400 !important; }
 .map iframe:hover { filter: grayscale(0); }
 
 /* Footer */
-.footer { background: linear-gradient(0deg, rgba(11,61,44,.9) 0%, var(--primary) 75%), url("../images/lighting-design.jpg") center/cover; color: #fff; padding-top: 120px; }
+.footer { position: relative; background: linear-gradient(0deg, rgba(11,61,44,.9) 0%, var(--primary) 75%), url("../images/footer-bg.jpg") center/cover; color: #fff; padding-top: 220px; }
+/* Grass edge along the top, tinted to match the section above it */
+.footer::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 132px; background: var(--white); -webkit-mask: url("../images/footer-grass.svg") center top / cover no-repeat; mask: url("../images/footer-grass.svg") center top / cover no-repeat; pointer-events: none; }
+body:has(main > .tinted:last-child) .footer::after { background: var(--bg-tint); }
+.footer-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; padding-bottom: 10px; }
+.footer-grid > div:nth-child(2) { padding-left: 30px; }
 .footer p, .footer a, .footer li { color: #fff; }
 .footer a:hover { color: var(--accent-light); }
-.footer h4 { font-size: 20px; font-weight: 600; }
+.footer h4 { font-size: 20px; font-weight: 600; margin-bottom: 25px; }
+.footer h4 + p { margin-bottom: 25px; }
+.footer .logo { margin-bottom: 25px; }
+.footer .social { margin-top: 25px; }
 .social { gap: 20px; }
 .social a { background: #fff; color: var(--accent); border: none; border-radius: 10px; width: 34px; height: 34px; }
 .social a:hover { background: var(--accent); color: #fff; }
 .hours li { border-bottom: none; padding: 0 0 10px; flex-direction: column; gap: 0; }
 .footer-bottom { border-top-color: var(--dark-divider); margin-top: 50px; padding: 40px 16px 30px; }
 .footer-bottom div { gap: 40px; }
+@media (max-width: 1024px) {
+  .footer { padding-top: 140px; }
+  .footer-grid > div:nth-child(2) { padding-left: 0; }
+  .footer-bottom { margin-top: 10px; padding-top: 20px; }
+}
+@media (max-width: 1024px) and (min-width: 768px) {
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 991px) { .footer::after { height: 100px; } }
+@media (max-width: 767px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+  .footer-grid > div:first-child, .footer-grid > div:last-child { grid-column: 1 / -1; }
+}
 
 @media (max-width: 1024px) {
   .nav { background: var(--accent); }
