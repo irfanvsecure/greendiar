@@ -11,7 +11,9 @@ class ContactController extends Controller
 {
     public function store(Request $request)
     {
-        $services = collect(config('service_catalog.categories'))->collapse()->pluck('title')->all();
+        $services = collect(config('service_catalog.categories'))->collapse()->pluck('title')
+            ->merge(collect(config('service_catalog.form_only'))->collapse())
+            ->all();
 
         $data = $request->validate([
             'name' => ['required', 'string', 'max:100'],

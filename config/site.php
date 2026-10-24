@@ -17,10 +17,10 @@ return [
     'whatsapp' => '971547664164',
     'whatsapp_message' => 'Hello Green Diar, I would like to ask about your services.',
     'email' => 'info@greendiar.ae',
-    'address' => 'Your street address, City, Country',
+    'address' => 'Dubai, UAE',
 
     // Place shown on the contact page map (any address Google Maps understands).
-    'map_query' => 'Lahore, Pakistan',
+    'map_query' => 'Dubai, UAE',
 
     'hours' => [
         'Monday - Saturday' => '08:00 AM - 05:00 PM',
@@ -30,8 +30,7 @@ return [
     'social' => [
         'facebook-f' => '#',
         'instagram' => '#',
-        'x-twitter' => '#',
-        'linkedin-in' => '#',
+        'tiktok' => '#',
     ],
 
     // Show only the under construction page on the live domain (greendiar.ae). Set to false to launch the site.

@@ -310,6 +310,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .vm-row + .vm-row { margin-top: 100px; }
 .vm-row.reverse .vm-img { order: 2; }
 .vm-img img { width: 100%; border-radius: var(--radius); aspect-ratio: 4/3.2; object-fit: cover; }
+.vm-img img.wide { aspect-ratio: 3/2; }
 .vm-content .section-head { margin-bottom: 0; }
 
 /* ========== Counter strip ========== */

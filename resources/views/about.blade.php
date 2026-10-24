@@ -28,7 +28,7 @@
 
       <div class="vm-row reverse">
         <div class="vm-img reveal">
-          <img src="{{ asset('assets/images/power-washing.jpg') }}" alt="Power washing a paved surface">
+          <img class="wide" src="{{ asset('assets/images/house-maintenance.jpg') }}" alt="Green Diar technician installing a CCTV camera, with electrical, plumbing, AC, carpentry and painting services">
         </div>
         <div class="vm-content">
           <div class="section-head left">

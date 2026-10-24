@@ -53,7 +53,15 @@
                       <option value="{{ $item['title'] }}" @selected($selectedService === $item['title'])>{{ $item['title'] }}</option>
                     @endforeach
                   </optgroup>
-                @endforeach              </select>
+                @endforeach
+                @foreach (config('service_catalog.form_only') as $category => $titles)
+                  <optgroup label="{{ $category }}">
+                    @foreach ($titles as $title)
+                      <option value="{{ $title }}" @selected($selectedService === $title)>{{ $title }}</option>
+                    @endforeach
+                  </optgroup>
+                @endforeach
+              </select>
               @error('service')<span class="error">{{ $message }}</span>@enderror
             </div>
             <div class="field">

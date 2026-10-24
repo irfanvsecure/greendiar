@@ -183,4 +183,9 @@ return [
         'cctv-installation',
     ],
 
+    // Extra services offered only in the appointment form dropdown (no service page).
+    'form_only' => [
+        'Other Services' => ['Masonry & Tiling Services'],
+    ],
+
 ];
