@@ -34,6 +34,9 @@ return [
         'linkedin-in' => '#',
     ],
 
+    // Show only the under construction page on the live domain (greendiar.ae). Set to false to launch the site.
+    'under_construction' => true,
+
     // Show the Projects page, its menu links and the home page projects section.
     'show_projects' => false,
 
