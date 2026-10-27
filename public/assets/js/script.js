@@ -105,26 +105,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Hero background slideshow: load the other photos after the page, then cross-fade every 6s */
-  const heroSlides = document.getElementById("heroSlides");
-  if (heroSlides && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const slides = [...heroSlides.children];
+  /* Hero slider: photo, text and dot change together; arrows/dots/swipe to navigate, autoplay every 7s */
+  const heroSlider = document.getElementById("heroSlider");
+  if (heroSlider) {
+    const photos = [...heroSlider.querySelectorAll(".hero-media")];
+    const texts = [...heroSlider.querySelectorAll(".hero-text")];
+    const dots = [...heroSlider.querySelectorAll(".hero-dots button")];
+    const autoplay = !matchMedia("(prefers-reduced-motion: reduce)").matches;
     let current = 0;
-    window.addEventListener("load", () => {
-      slides.forEach(img => { if (img.dataset.src) img.src = img.dataset.src; });
-      setInterval(() => {
-        const next = (current + 1) % slides.length;
-        if (!slides[next].complete) return; // wait for the photo instead of fading to a blank
-        slides.forEach(s => s.classList.remove("prev"));
-        slides[current].classList.replace("active", "prev");
-        // Restart the zoom from the beginning for the incoming photo
-        slides[next].style.animation = "none";
-        void slides[next].offsetWidth;
-        slides[next].style.animation = "";
-        slides[next].classList.add("active");
-        current = next;
-      }, 6000);
+    let timer;
+    const loadPhoto = img => { if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; } };
+    const go = i => {
+      const next = (i + photos.length) % photos.length;
+      if (next === current) return;
+      loadPhoto(photos[next]);
+      photos.forEach(p => p.classList.remove("prev"));
+      photos[current].classList.replace("active", "prev");
+      // Restart the zoom from the beginning for the incoming photo
+      photos[next].style.animation = "none";
+      void photos[next].offsetWidth;
+      photos[next].style.animation = "";
+      photos[next].classList.add("active");
+      texts.forEach((t, n) => {
+        t.classList.toggle("active", n === next);
+        t.setAttribute("aria-hidden", n !== next);
+      });
+      dots.forEach((d, n) => d.classList.toggle("active", n === next));
+      current = next;
+    };
+    const restart = () => {
+      clearInterval(timer);
+      if (autoplay) timer = setInterval(() => {
+        const next = photos[(current + 1) % photos.length];
+        if (next.complete && !next.dataset.src) go(current + 1); // wait for the photo instead of fading to a blank
+      }, 7000);
+    };
+    heroSlider.querySelector(".hero-arrow.prev").addEventListener("click", () => { go(current - 1); restart(); });
+    heroSlider.querySelector(".hero-arrow.next").addEventListener("click", () => { go(current + 1); restart(); });
+    dots.forEach((d, n) => d.addEventListener("click", () => { go(n); restart(); }));
+    let touchX = null;
+    heroSlider.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+    heroSlider.addEventListener("touchend", e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 50) { go(current + (dx < 0 ? 1 : -1)); restart(); }
+      touchX = null;
     });
+    window.addEventListener("load", () => { photos.forEach(loadPhoto); restart(); });
   }
 
   /* Service catalog sliders (home page) */
@@ -247,6 +274,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  /* Tabs (About page Mission & Values) */
+  document.querySelectorAll("[data-tabs]").forEach(box => {
+    const tabs = [...box.querySelectorAll('[role="tab"]')];
+    const panels = [...box.querySelectorAll('[role="tabpanel"]')];
+    tabs.forEach((tab, n) => tab.addEventListener("click", () => {
+      tabs.forEach((t, i) => { t.classList.toggle("active", i === n); t.setAttribute("aria-selected", i === n); });
+      panels.forEach((p, i) => p.classList.toggle("active", i === n));
+    }));
+  });
 
   /* FAQ accordion */
   const items = document.querySelectorAll(".acc-item");

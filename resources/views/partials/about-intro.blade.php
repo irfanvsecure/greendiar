@@ -4,7 +4,7 @@
       <img class="about-img-1" src="{{ asset('assets/images/tree-trimming.jpg') }}" alt="Gardener pruning a tree">
       <img class="about-img-2" src="{{ asset('assets/images/plant-repotting.jpg') }}" alt="Repotting a seedling">
       <div class="experience-badge">
-        <strong><span class="count" data-to="25">0</span>+</strong>
+        <strong><span class="count" data-to="5">0</span>+</strong>
         <span>Years Of Experience</span>
       </div>
     </div>
@@ -14,11 +14,11 @@
         <h3 class="eyebrow">About Us</h3>
         <h2>Green Diar <span>Technical &amp; Landscaping Services</span></h2>
         <p>At Green Diar Technical &amp; Landscaping Services, we believe that a well-maintained property is more than just a beautiful space — it is a place where people feel comfortable, safe, and proud to live.</p>
-        <p>We are a professional technical and landscaping services company providing comprehensive landscaping, garden maintenance and house maintenance for residential and commercial properties. Our goal is to provide reliable, high-quality solutions that keep your property looking its best and functioning efficiently throughout the year.</p>
+        <p>We are a professional technical and landscaping services company providing landscaping, garden maintenance, swimming pool construction and maintenance, and home maintenance for residential and commercial properties. Our goal is to provide reliable, high-quality solutions that keep your property looking its best and functioning efficiently throughout the year.</p>
       </div>
       <ul class="check-list reveal">
         <li><i class="fa-solid fa-circle-check"></i> Landscaping &amp; Garden Care</li>
-        <li><i class="fa-solid fa-circle-check"></i> House Maintenance</li>
+        <li><i class="fa-solid fa-circle-check"></i> Swimming Pool Construction &amp; Maintenance</li>
         <li><i class="fa-solid fa-circle-check"></i> Quality Workmanship</li>
         <li><i class="fa-solid fa-circle-check"></i> Customer Satisfaction</li>
       </ul>

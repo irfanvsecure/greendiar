@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Services – ' . config('app.name'))
-@section('description', 'Garden maintenance, plant care, landscape and poolscape design, hardscape, pergolas, irrigation, grass and green wall installation.')
+@section('description', 'Swimming pool construction and maintenance, garden maintenance, plant care, landscape and poolscape design, hardscape, pergolas, irrigation, grass and green wall installation.')
 
 @section('content')
 

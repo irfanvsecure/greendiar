@@ -48,7 +48,7 @@
 
   /* Headings: letters slide in one by one */
   const headings = document.querySelectorAll(
-    ".hero h1, .section-head h2, .video-top h2, .page-header h1, .detail-block h2, .consult-box h2"
+    ".section-head h2, .video-top h2, .page-header h1, .detail-block h2, .consult-box h2"
   );
   document.fonts.ready.then(() => {
     headings.forEach(el => {

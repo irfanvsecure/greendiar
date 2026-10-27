@@ -1,4 +1,20 @@
 <header class="header" id="header">
+  {{-- Top bar: social links left, site search right (SearchController). Folds away once the page scrolls. --}}
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-social">
+        <span class="topbar-label">Follow us</span>
+        @foreach (config('site.social') as $icon => $url)
+          <a href="{{ $url }}" aria-label="{{ $icon }}"><i class="fa-brands fa-{{ $icon }}"></i></a>
+        @endforeach
+      </div>
+      <form class="topbar-search" action="{{ route('search') }}" method="get" role="search">
+        <input type="search" name="q" value="{{ request()->routeIs('search') ? request('q') : '' }}" placeholder="Search services..." aria-label="Search the website" required>
+        <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+  </div>
+
   <div class="container header-inner">
     @include('partials.logo')
 

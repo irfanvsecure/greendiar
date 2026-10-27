@@ -2,23 +2,91 @@
 
 @section('content')
 
-  <!-- Hero -->
-  <section class="hero">
-    {{-- Background slideshow: slow zoom/pan on each photo with a cross-fade (script.js). Later slides load after the page. --}}
+  <!-- Hero slider: photo and text change together (script.js). Later photos load after the page. -->
+  <section class="hero" id="heroSlider" aria-roledescription="carousel" aria-label="Our main services">
+    @php($heroSlides = [
+      [
+        'image' => 'pool-hero.jpg',
+        'eyebrow' => 'Swimming Pool Construction & Maintenance',
+        'title' => '<span>Build</span> the swimming pool <span>you have always wanted</span>',
+        'text' => 'From design and excavation to tiling, filtration and the first fill, we build beautiful, durable pools and keep them crystal clear all year round.',
+        'link' => ['Pool Services', route('services.index') . '#swimming-pools'],
+      ],
+      [
+        'image' => 'walkways-pathways.jpg',
+        'eyebrow' => 'Beautiful Garden',
+        'title' => '<span>Transform</span> your outdoor space <span>into a lush paradise</span>',
+        'text' => "Whether you're dreaming of a vibrant garden, a serene patio, or a functional outdoor living space, our team of skilled landscapers and gardeners is here to bring your vision to life. Let's create a landscape you'll love.",
+        'link' => ['Our Services', route('services.index')],
+      ],
+      [
+        'image' => 'aluminum-pergolas.jpg',
+        'eyebrow' => 'Pergolas & Outdoor Living',
+        'title' => '<span>Shade, comfort</span> and style <span>for outdoor living</span>',
+        'text' => 'Modern aluminium and warm timber pergolas, gazebos and outdoor kitchens, designed and built to make the most of your outdoor space.',
+        'link' => ['Outdoor Living', route('services.index') . '#pergolas-outdoor-living'],
+      ],
+      [
+        'image' => 'patios-decks.jpg',
+        'eyebrow' => 'Hardscape',
+        'title' => '<span>Patios, decks</span> and pathways <span>built to last</span>',
+        'text' => 'Durable patios, decks, walkways, stairs and driveways that connect your outdoor spaces safely and beautifully.',
+        'link' => ['Hardscape Services', route('services.index') . '#hardscape'],
+      ],
+      [
+        'image' => 'tree-trimming.jpg',
+        'eyebrow' => 'Garden Maintenance',
+        'title' => '<span>Healthy trees,</span> tidy gardens <span>all year round</span>',
+        'text' => 'Scheduled garden care, tree and shrub trimming, plant care and clean-ups that keep your garden healthy, safe and looking its best.',
+        'link' => ['Garden Services', route('services.index') . '#garden-maintenance'],
+      ],
+      [
+        'image' => 'lawn-mowing.jpg',
+        'eyebrow' => 'Lawns & Irrigation',
+        'title' => '<span>Green lawns</span> that stay <span>thick and fresh</span>',
+        'text' => 'Natural and artificial grass, regular mowing and efficient irrigation systems for a lawn you will be proud of.',
+        'link' => ['Lawn Services', route('services.index') . '#irrigation-grass-green-walls'],
+      ],
+    ])
     <div class="hero-slides" id="heroSlides" aria-hidden="true">
-      <img class="hero-media active" src="{{ asset('assets/images/walkways-pathways.jpg') }}" alt="">
-      @foreach (['aluminum-pergolas.jpg', 'patios-decks.jpg', 'tree-trimming.jpg', 'lawn-mowing.jpg'] as $slide)
-        <img class="hero-media" data-src="{{ asset('assets/images/' . $slide) }}" alt="">
+      @foreach ($heroSlides as $slide)
+        <img @class(['hero-media', 'active' => $loop->first]) {{ $loop->first ? 'src' : 'data-src' }}="{{ asset('assets/images/' . $slide['image']) }}" alt="" @if ($loop->first) fetchpriority="high" @endif>
       @endforeach
     </div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <h3 class="eyebrow light reveal">Beautiful Garden</h3>
-      <h1 class="reveal"><span>Transform</span> your outdoor space <span>into a lush paradise</span></h1>
-      <p class="reveal">Whether you're dreaming of a vibrant garden, a serene patio, or a functional outdoor living space, our team of skilled landscapers and gardeners is here to bring your vision to life. Let's create a landscape you'll love.</p>
-      <div class="btn-group reveal">
-        <a href="{{ route('contact') }}#appointment" class="btn btn-light">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="{{ route('services.index') }}" class="btn btn-outline">Our Services <i class="fa-solid fa-arrow-right"></i></a>
+      <div class="hero-texts">
+        @foreach ($heroSlides as $slide)
+          <div @class(['hero-text', 'active' => $loop->first]) role="group" aria-roledescription="slide" aria-label="{{ $loop->iteration }} of {{ $loop->count }}" @unless ($loop->first) aria-hidden="true" @endunless>
+            <h3 class="eyebrow light">{{ $slide['eyebrow'] }}</h3>
+            @if ($loop->first)
+              <h1 class="hero-title">{!! $slide['title'] !!}</h1>
+            @else
+              <h2 class="hero-title">{!! $slide['title'] !!}</h2>
+            @endif
+            <p>{{ $slide['text'] }}</p>
+            <div class="btn-group">
+              <a href="{{ route('contact') }}#appointment" class="btn btn-light">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="{{ $slide['link'][1] }}" class="btn btn-outline">{{ $slide['link'][0] }} <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        @endforeach
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-trust">
+          <div class="trust-item"><strong><span class="count" data-to="1">0</span>K+</strong><span>Happy<br>Customers</span></div>
+          <div class="trust-item"><strong><span class="count" data-to="5">0</span>+</strong><span>Years of<br>Experience</span></div>
+        </div>
+        <div class="hero-controls">
+          <button class="hero-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="hero-dots">
+            @foreach ($heroSlides as $slide)
+              <button @class(['active' => $loop->first]) aria-label="Show slide {{ $loop->iteration }}: {{ $slide['eyebrow'] }}"></button>
+            @endforeach
+          </div>
+          <button class="hero-arrow next" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
       </div>
     </div>
   </section>
@@ -29,14 +97,17 @@
       <div class="stats-left">
         <div class="counter-box">
           <span class="counter-title">Happy<br>Customers</span>
-          <span class="counter-num"><span class="count" data-to="3.6" data-decimals="1">0</span>k+</span>
+          <span class="counter-num"><span class="count" data-to="1">0</span>K+</span>
         </div>
-        <p>Let's bring your dream garden to life! Whether you're looking for a complete landscape overhaul or simple garden maintenance.</p>
+        <div class="counter-box">
+          <span class="counter-title">Years of<br>Experience</span>
+          <span class="counter-num"><span class="count" data-to="5">0</span>+</span>
+        </div>
       </div>
       <div class="consult-box">
-        <h2>Ready to Transform Your Outdoor Space?</h2>
-        <p>Contact us today for a free consultation and discover how we can turn your vision into reality.</p>
-        <a href="{{ route('contact') }}#appointment" class="btn btn-light">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+        <h2>Planning a pool, garden or home project?</h2>
+        <p>Tell us what you need and we will arrange a free site visit and a clear, no-obligation quotation.</p>
+        <a href="{{ route('contact') }}#appointment" class="btn btn-light">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
@@ -72,24 +143,33 @@
           <span class="bg-title">Expertise</span>
           <h3 class="eyebrow">Expertise</h3>
           <h2>Our expertise <span>in landscaping &amp; property care</span></h2>
-          <p>Our landscaping services cover all aspects of outdoor spaces, from landscape design and installation to garden maintenance, irrigation, soft and hard landscaping, planting, lawn care, and tree and shrub maintenance.</p>
+          <p>Our services cover every part of your property, from poolscapes and swimming pools to landscape design and installation, garden maintenance, irrigation, planting, lawn care and complete home maintenance.</p>
           <p>At Green Diar, we focus on quality workmanship, professional service, attention to detail, and customer satisfaction.</p>
         </div>
         <div class="funfacts reveal">
-          <div class="funfact"><i class="fa-solid fa-seedling"></i><strong><span class="count" data-to="92">0</span>%</strong><span>Garden Maintenance</span></div>
-          <div class="funfact"><i class="fa-solid fa-tree"></i><strong><span class="count" data-to="82">0</span>%</strong><span>Landscape Design</span></div>
-          <div class="funfact"><i class="fa-solid fa-leaf"></i><strong><span class="count" data-to="98">0</span>%</strong><span>Plant Care</span></div>
+          <div class="funfact"><i class="fa-solid fa-leaf"></i><strong><span class="count" data-to="92">0</span>%</strong><span>Landscape &amp; Garden</span></div>
+          <div class="funfact"><i class="fa-solid fa-water-ladder"></i><strong><span class="count" data-to="82">0</span>%</strong><span>Swimming Pool</span></div>
+          <div class="funfact"><i class="fa-solid fa-screwdriver-wrench"></i><strong><span class="count" data-to="98">0</span>%</strong><span>Home Maintenance</span></div>
         </div>
         <div class="section-cta reveal"><a href="{{ route('contact') }}#appointment" class="btn btn-accent">Get in Touch <i class="fa-solid fa-arrow-right"></i></a></div>
       </div>
-      <div class="expertise-gallery reveal">
+      {{-- Three image cards: two stacked on the left, one tall on the right --}}
+      <div class="expertise-gallery three reveal">
         <div class="col">
-          <img src="{{ asset('assets/images/plantscape-design.jpg') }}" alt="Plantscape design">
-          <img src="{{ asset('assets/images/natural-grass.jpg') }}" alt="Natural grass installation">
+          <a class="expertise-img" href="{{ route('services.index') }}#garden-maintenance">
+            <img src="{{ asset('assets/images/plantscape-design.jpg') }}" alt="Landscaped garden with stone path and pond">
+            <span>Landscape &amp; Garden</span>
+          </a>
+          <a class="expertise-img" href="{{ route('services.index') }}">
+            <img src="{{ asset('assets/images/expertise-home-maintenance.jpg') }}" alt="Technician working on an electrical fitting" style="object-position: 35% center">
+            <span>Home Maintenance</span>
+          </a>
         </div>
         <div class="col">
-          <img src="{{ asset('assets/images/plant-care.jpg') }}" alt="Plant care">
-          <img src="{{ asset('assets/images/shrub-trimming.jpg') }}" alt="Shrub trimming">
+          <a class="expertise-img" href="{{ route('services.index') }}#swimming-pools">
+            <img src="{{ asset('assets/images/expertise-pool.jpg') }}" alt="Swimming pool in a garden surrounded by trees">
+            <span>Swimming Pool</span>
+          </a>
         </div>
       </div>
     </div>

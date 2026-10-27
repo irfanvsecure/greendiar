@@ -98,6 +98,29 @@ return [
             ],
         ],
 
+        'Swimming Pools' => [
+            'pool-design-approvals' => [
+                'title' => 'Pool Design & Approvals',
+                'image' => 'pool-design-approvals.jpg',
+                'summary' => 'Pool plans, site layout and the permits and approvals needed before work starts.',
+            ],
+            'swimming-pool-construction' => [
+                'title' => 'Swimming Pool Construction',
+                'image' => 'swimming-pool-construction.jpg',
+                'summary' => 'New pools built and finished to your design, from excavation and tiling to the first fill.',
+            ],
+            'pool-technical-drawings' => [
+                'title' => 'Technical Drawings',
+                'image' => 'pool-technical-drawings.jpg',
+                'summary' => 'Detailed technical drawings for structure, plumbing, filtration and equipment.',
+            ],
+            'swimming-pool-maintenance' => [
+                'title' => 'Swimming Pool Maintenance',
+                'image' => 'swimming-pool-maintenance.jpg',
+                'summary' => 'Regular cleaning, water balancing and equipment checks for clear, safe water.',
+            ],
+        ],
+
         'Hardscape' => [
             'patios-decks' => [
                 'title' => 'Patios & Decks',
@@ -167,17 +190,30 @@ return [
             ],
         ],
 
-        'Security Systems' => [
+        'Additional Services' => [
             'cctv-installation' => [
                 'title' => 'CCTV Installation',
                 'image' => 'cctv-installation.jpg', // Photo: Alan J. Hendry on Unsplash (Unsplash License)
                 'summary' => 'Supply, installation and setup of CCTV cameras to keep your property safe.',
+            ],
+            'cctv-maintenance' => [
+                'title' => 'CCTV Maintenance & Repair',
+                'image' => 'cctv-maintenance.jpg',
+                'position' => '30% center',
+                'summary' => 'Servicing, repair and upgrades for existing cameras so your system keeps recording.',
+            ],
+            'garage-doors' => [
+                'title' => 'Garage Door Installation',
+                'image' => 'garage-doors.jpg',
+                'position' => '40% center',
+                'summary' => 'Supply, installation and repair of modern sectional and automatic garage doors.',
             ],
         ],
 
     ],
 
     'home' => [
+        'swimming-pool-construction', 'swimming-pool-maintenance',
         'landscape-design', 'poolscape-design', 'aluminum-pergolas-gazebos',
         'garden-maintenance', 'lighting-design', 'irrigation-system-installation',
         'cctv-installation',
@@ -185,7 +221,7 @@ return [
 
     // Extra services offered only in the appointment form dropdown (no service page).
     'form_only' => [
-        'Other Services' => ['Masonry & Tiling Services'],
+        'Other Services' => ['Home Maintenance', 'Masonry & Tiling Services'],
     ],
 
 ];
