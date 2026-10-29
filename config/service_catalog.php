@@ -223,7 +223,7 @@ return [
     // Extra services offered only in the appointment form dropdown (no service page).
     'form_only' => [
         'Other Services' => [
-            'Home Maintenance', 'Electrical Work', 'Plumbing Services', 'AC Maintenance & Repair',
+            'Electrical Work', 'Plumbing Services', 'AC Maintenance & Repair',
             'Carpentry Works', 'Painting Services', 'Masonry & Tiling Services',
         ],
     ],
