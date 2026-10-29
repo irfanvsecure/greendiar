@@ -1135,3 +1135,39 @@ html, body { overflow-x: hidden; overflow-x: clip; }
   .search-card img { width: 90px; height: 90px; }
   .search-pages li a { flex-wrap: wrap; gap: 4px 12px; }
 }
+
+/* ========== Responsive fixes (all pages) ========== */
+/* Button labels stay on one line (e.g. "Get in Touch" in the video section on tablets) */
+.btn { white-space: nowrap; }
+
+/* Service slider arrows sit inside the screen once there is no side margin for them */
+@media (max-width: 1199px) {
+  .catalog-nav { width: 42px; height: 42px; font-size: 14px; }
+  .catalog-nav.prev { left: 6px; }
+  .catalog-nav.next { right: 6px; }
+}
+
+/* Tablet: the About "Years of Experience" badge overlaps the photo's edge instead of floating in empty space */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about .experience-badge { right: auto; left: calc(70% - 110px); }
+}
+
+@media (max-width: 767px) {
+  /* Keep the hero text clear of the taller fixed header */
+  .hero { padding-top: 180px; }
+  /* Search results: page title on its own line, description below */
+  .search-pages strong { min-width: 0; flex-basis: 100%; }
+  .search-pages span { flex: 1 1 0; }
+  /* Opening hours stay on one line in the footer */
+  .hours li { font-size: 14px; white-space: nowrap; }
+}
+
+@media (max-width: 575px) {
+  /* Expertise photos stack in one column so their labels are readable */
+  .expertise-gallery { grid-template-columns: 1fr; }
+  .expertise-gallery .col:last-child { margin-top: 0; }
+  .expertise-gallery.three .col .expertise-img:is(:first-child, :last-child) img { aspect-ratio: 16 / 10; height: auto; }
+  /* Search page: icon-only round button */
+  .search-form .btn { width: 52px; height: 52px; padding: 0; margin-right: 0; }
+  .search-form .btn i { position: static; transform: none; width: auto; height: auto; background: none; color: #fff; }
+}
