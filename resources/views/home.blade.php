@@ -74,10 +74,6 @@
       </div>
 
       <div class="hero-bottom">
-        <div class="hero-trust">
-          <div class="trust-item"><strong><span class="count" data-to="1">0</span>K+</strong><span>Happy<br>Customers</span></div>
-          <div class="trust-item"><strong><span class="count" data-to="5">0</span>+</strong><span>Years of<br>Experience</span></div>
-        </div>
         <div class="hero-controls">
           <button class="hero-arrow prev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
           <div class="hero-dots">
@@ -95,13 +91,13 @@
   <section class="stats-bar">
     <div class="container stats-inner">
       <div class="stats-left">
-        <div class="counter-box">
-          <span class="counter-title">Happy<br>Customers</span>
-          <span class="counter-num"><span class="count" data-to="1">0</span>K+</span>
-        </div>
-        <div class="counter-box">
-          <span class="counter-title">Years of<br>Experience</span>
-          <span class="counter-num"><span class="count" data-to="5">0</span>+</span>
+        <div class="counter-box counter-feature">
+          <span class="counter-icon"><i class="fa-solid fa-users"></i></span>
+          <div>
+            <span class="counter-num"><span class="count" data-to="1">0</span>K+</span>
+            <span class="counter-title">Happy Customers</span>
+            <small>Residential &amp; commercial clients</small>
+          </div>
         </div>
       </div>
       <div class="consult-box">
@@ -147,9 +143,9 @@
           <p>At Green Diar, we focus on quality workmanship, professional service, attention to detail, and customer satisfaction.</p>
         </div>
         <div class="funfacts reveal">
-          <div class="funfact"><i class="fa-solid fa-leaf"></i><strong><span class="count" data-to="92">0</span>%</strong><span>Landscape &amp; Garden</span></div>
-          <div class="funfact"><i class="fa-solid fa-water-ladder"></i><strong><span class="count" data-to="82">0</span>%</strong><span>Swimming Pool</span></div>
-          <div class="funfact"><i class="fa-solid fa-screwdriver-wrench"></i><strong><span class="count" data-to="98">0</span>%</strong><span>Home Maintenance</span></div>
+          <div class="funfact"><i class="fa-solid fa-leaf"></i><span>Landscape &amp; Garden</span></div>
+          <div class="funfact"><i class="fa-solid fa-water-ladder"></i><span>Swimming Pool</span></div>
+          <div class="funfact"><i class="fa-solid fa-screwdriver-wrench"></i><span>Home Maintenance</span></div>
         </div>
         <div class="section-cta reveal"><a href="{{ route('contact') }}#appointment" class="btn btn-accent">Get in Touch <i class="fa-solid fa-arrow-right"></i></a></div>
       </div>
@@ -161,7 +157,7 @@
             <span>Landscape &amp; Garden</span>
           </a>
           <a class="expertise-img" href="{{ route('services.index') }}">
-            <img src="{{ asset('assets/images/expertise-home-maintenance.jpg') }}" alt="Technician working on an electrical fitting" style="object-position: 35% center">
+            <img src="{{ asset('assets/images/expertise-home-maintenance.jpg') }}" alt="Technician cleaning the filter of a split AC unit" style="object-position: 60% center">
             <span>Home Maintenance</span>
           </a>
         </div>

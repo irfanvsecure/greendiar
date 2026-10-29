@@ -18,8 +18,8 @@
       </div>
       <ul class="check-list reveal">
         <li><i class="fa-solid fa-circle-check"></i> Landscaping &amp; Garden Care</li>
+        <li><i class="fa-solid fa-circle-check"></i> Home Maintenance</li>
         <li><i class="fa-solid fa-circle-check"></i> Swimming Pool Construction &amp; Maintenance</li>
-        <li><i class="fa-solid fa-circle-check"></i> Quality Workmanship</li>
         <li><i class="fa-solid fa-circle-check"></i> Customer Satisfaction</li>
       </ul>
       <div class="about-footer reveal">

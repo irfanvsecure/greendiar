@@ -25,7 +25,7 @@
   ])
 
   @include('partials.about-row', [
-    'images' => ['home-maintenance.jpg' => 'Technician using a power drill for a home repair', 'cctv-installation.jpg' => 'CCTV camera installation'],
+    'images' => ['home-maintenance.jpg' => 'Technician cleaning the filter of a split AC unit', 'cctv-installation.jpg' => 'CCTV camera installation'],
     'bg' => 'Maintenance',
     'eyebrow' => 'Home Maintenance',
     'title' => ['Care for', 'the essentials of your property'],
@@ -40,7 +40,7 @@
   @include('partials.about-row', [
     'reverse' => true,
     'tinted' => true,
-    'images' => ['pool-tiling.jpg' => 'Newly built and tiled swimming pool', 'pool-maintenance.jpg' => 'Technician cleaning a swimming pool'],
+    'images' => ['pool-tiling.jpg' => 'Newly built and tiled swimming pool', 'pool-maintenance.jpg' => 'Technician brushing a swimming pool'],
     'bg' => 'Pools',
     'eyebrow' => 'Swimming Pool Construction & Maintenance',
     'title' => ['Pools built to last,', 'cared for every season'],
@@ -53,7 +53,19 @@
   ])
 
   @include('partials.about-row', [
-    'images' => ['customer-satisfaction.jpg' => 'Hand passing a smiley face to a customer', 'lighting-design.jpg' => 'Garden lit at night'],
+    'reverse' => true,
+    'images' => ['customer-satisfaction.jpg' => 'Hand passing a smiley face to a customer'],
+    'bg' => 'Satisfaction',
+    'eyebrow' => 'Customer Satisfaction',
+    'title' => ['Your satisfaction is', 'our measure of success'],
+    'text' => [
+      'Customer satisfaction is at the heart of Green Diar Technical & Landscaping Services. We are committed to understanding our clients’ needs, delivering reliable workmanship, and providing professional service with attention to every detail. From landscaping and swimming pool construction to home maintenance, we strive to build lasting relationships through clear communication, dependable solutions, and a commitment to quality.',
+      'Your satisfaction is our measure of success. We aim to make every experience smooth, every project worthwhile, and every space better than you imagined. Your trust matters to us, and we work hard to earn it through quality service, lasting results, and care that continues long after the job is complete. Your vision is our priority, and your confidence in us is the foundation of every successful project.',
+    ],
+  ])
+
+  @include('partials.about-row', [
+    'images' => ['garden-maintenance.webp' => 'Well-kept garden with a green lawn and flower beds in front of a house'],
     'bg' => 'Our Promise',
     'eyebrow' => 'Mission & Values',
     'title' => ['What drives us', 'every single day'],
@@ -66,10 +78,6 @@
         ['fa-handshake', 'Customer Commitment', 'We listen to our clients, understand their requirements, and work to deliver solutions that meet their expectations.'],
         ['fa-scale-balanced', 'Integrity & Transparency', 'We believe in honest communication, fair practices, and building trust through every interaction.'],
         ['fa-seedling', 'Sustainability & Care', 'We value responsible practices that help maintain beautiful, functional, and sustainable spaces.'],
-      ]],
-      'Customer Satisfaction' => ['text' => [
-        'Customer satisfaction is at the heart of Green Diar Technical & Landscaping Services. We are committed to understanding our clients’ needs, delivering reliable workmanship, and providing professional service with attention to every detail. From landscaping and swimming pool construction to home maintenance, we strive to build lasting relationships through clear communication, dependable solutions, and a commitment to quality.',
-        'Your satisfaction is our measure of success. We aim to make every experience smooth, every project worthwhile, and every space better than you imagined. Your trust matters to us, and we work hard to earn it through quality service, lasting results, and care that continues long after the job is complete. Your vision is our priority, and your confidence in us is the foundation of every successful project.',
       ]],
     ],
   ])

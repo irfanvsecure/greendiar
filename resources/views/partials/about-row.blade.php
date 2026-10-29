@@ -1,5 +1,6 @@
 {{-- About page section in the same layout as the home About section (partials/about-intro).
-     Expects $images = [large, small] (file => alt), $bg, $eyebrow, $title = [plain, light], $text, $points = [[icon, title, text], ...].
+     Expects $images = [large, small] (file => alt; one image fills the column), $bg, $eyebrow, $title = [plain, light],
+     $text (a paragraph or a list of them), $points = [[icon, title, text], ...] (optional).
      Optional: $reverse (images on the right), $tinted, $service (preselected in the quote form).
      $tabs = [label => ['text' => [paragraphs], 'points' => [...]]] shows tabbed content instead of $text / $points. --}}
 <section @class(['section', 'about', 'about-row', 'reverse' => $reverse ?? false, 'tinted' => $tinted ?? false])>
@@ -14,7 +15,9 @@
         <span class="bg-title">{{ $bg }}</span>
         <h3 class="eyebrow">{{ $eyebrow }}</h3>
         <h2>{{ $title[0] }} <span>{{ $title[1] }}</span></h2>
-        @isset($text)<p>{{ $text }}</p>@endisset
+        @foreach ((array) ($text ?? []) as $paragraph)
+          <p>{{ $paragraph }}</p>
+        @endforeach
       </div>
       @isset($tabs)
         <div class="about-tabs reveal" data-tabs>
@@ -43,7 +46,7 @@
             @endforeach
           </div>
         </div>
-      @else
+      @elseif (!empty($points))
         <div class="about-points">
           @foreach ($points as [$icon, $pointTitle, $pointText])
             <div class="about-point reveal">

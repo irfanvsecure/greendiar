@@ -99,6 +99,11 @@ return [
         ],
 
         'Swimming Pools' => [
+            'pool-technical-drawings' => [
+                'title' => 'Technical Drawings',
+                'image' => 'pool-technical-drawings.jpg',
+                'summary' => 'Detailed technical drawings for structure, plumbing, filtration and equipment.',
+            ],
             'pool-design-approvals' => [
                 'title' => 'Pool Design & Approvals',
                 'image' => 'pool-design-approvals.jpg',
@@ -109,14 +114,10 @@ return [
                 'image' => 'swimming-pool-construction.jpg',
                 'summary' => 'New pools built and finished to your design, from excavation and tiling to the first fill.',
             ],
-            'pool-technical-drawings' => [
-                'title' => 'Technical Drawings',
-                'image' => 'pool-technical-drawings.jpg',
-                'summary' => 'Detailed technical drawings for structure, plumbing, filtration and equipment.',
-            ],
             'swimming-pool-maintenance' => [
                 'title' => 'Swimming Pool Maintenance',
                 'image' => 'swimming-pool-maintenance.jpg',
+                'position' => '60% center',
                 'summary' => 'Regular cleaning, water balancing and equipment checks for clear, safe water.',
             ],
         ],
@@ -190,7 +191,7 @@ return [
             ],
         ],
 
-        'Additional Services' => [
+        'Additional Technical Services' => [
             'cctv-installation' => [
                 'title' => 'CCTV Installation',
                 'image' => 'cctv-installation.jpg', // Photo: Alan J. Hendry on Unsplash (Unsplash License)
@@ -221,7 +222,10 @@ return [
 
     // Extra services offered only in the appointment form dropdown (no service page).
     'form_only' => [
-        'Other Services' => ['Home Maintenance', 'Masonry & Tiling Services'],
+        'Other Services' => [
+            'Home Maintenance', 'Electrical Work', 'Plumbing Services', 'AC Maintenance & Repair',
+            'Carpentry Works', 'Painting Services', 'Masonry & Tiling Services',
+        ],
     ],
 
 ];
