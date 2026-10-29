@@ -23,8 +23,6 @@
 
   @include('partials.cta-strip', ['title' => 'Need one of our services?', 'text' => 'Request a site visit or quotation for one service or several together.'])
 
-  @include('partials.counter-strip')
-
   @include('partials.faqs')
 
 @endsection

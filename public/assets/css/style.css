@@ -22,7 +22,7 @@ ul { list-style: none; }
 h1, h2, h3, h4 { color: var(--heading); line-height: 1.2; font-weight: 700; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-.container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 16px; }
+.container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 var(--gutter); }
 .section { padding: 110px 0; }
 .tinted { background: var(--bg-tint); }
 
@@ -278,7 +278,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .social a:hover { background: var(--accent-light); color: var(--primary); border-color: var(--accent-light); }
 .footer-links li { margin-bottom: 10px; }
 .hours li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,.15); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 26px 16px; border-top: 1px solid rgba(255,255,255,.12); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 26px var(--gutter); border-top: 1px solid rgba(255,255,255,.12); }
 .footer-bottom div { display: flex; gap: 24px; }
 
 /* ========== Modal ========== */
@@ -693,7 +693,7 @@ body:has(main > .tinted:last-child) .footer::after { background: var(--bg-tint);
 .social a { background: #fff; color: var(--accent); border: none; border-radius: 10px; width: 34px; height: 34px; }
 .social a:hover { background: var(--accent); color: #fff; }
 .hours li { border-bottom: none; padding: 0 0 10px; flex-direction: column; gap: 0; }
-.footer-bottom { border-top-color: var(--dark-divider); margin-top: 50px; padding: 40px 16px 30px; }
+.footer-bottom { border-top-color: var(--dark-divider); margin-top: 50px; padding: 40px var(--gutter) 30px; }
 .footer-bottom div { gap: 40px; }
 @media (max-width: 1024px) {
   .footer { padding-top: 140px; }
@@ -899,7 +899,7 @@ html.lenis { scroll-behavior: auto; }
 .footer-bottom .credit { padding-left: 22px; border-left: 1px solid rgba(255,255,255,.25); }
 @media (min-width: 1200px) { .footer-bottom { flex-wrap: nowrap; white-space: nowrap; } }
 @media (max-width: 767px) {
-  .footer-bottom { padding-right: 16px; padding-bottom: 80px; justify-content: center; text-align: center; }
+  .footer-bottom { padding-right: var(--gutter); padding-bottom: 80px; justify-content: center; text-align: center; }
   .footer-bottom .footer-legal { flex-wrap: wrap; justify-content: center; gap: 10px 18px; }
   .footer-bottom .credit { width: 100%; padding-left: 0; border-left: none; }
 }
@@ -1171,3 +1171,16 @@ html, body { overflow-x: hidden; overflow-x: clip; }
   .search-form .btn { width: 52px; height: 52px; padding: 0; margin-right: 0; }
   .search-form .btn i { position: static; transform: none; width: auto; height: auto; background: none; color: #fff; }
 }
+
+/* ========== Same side spacing on every section ========== */
+/* One gutter for all containers: 16px on phones, 24px on tablets */
+:root { --gutter: 16px; }
+@media (min-width: 768px) and (max-width: 1199px) { :root { --gutter: 24px; } }
+
+/* The stats card is itself the container, so it gets the gutter as outer space instead of touching the screen edges */
+.stats-inner { width: calc(100% - 2 * var(--gutter)); padding: 0; }
+/* Testimonial card fills the content width on tablets and phones, like the other sections */
+@media (max-width: 1024px) { .testimonial-card { max-width: none; } }
+/* Stacked stats card: counter lines up with the "Planning a pool..." text below it */
+@media (max-width: 1024px) { .stats-left:has(.counter-feature) { justify-content: flex-start; padding: 40px; } }
+@media (max-width: 767px) { .stats-left:has(.counter-feature) { padding: 28px; } }
