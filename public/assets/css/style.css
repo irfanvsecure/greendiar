@@ -996,10 +996,38 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 .search-suggest a:hover, .search-suggest a.active { background: var(--bg-tint); }
 .search-suggest .empty { padding: 10px 14px; font-size: 13px; color: #7a857f; }
 @media (max-width: 1024px) { .header-actions { gap: 12px; margin-left: auto; } }
+/* Tablets and phones: keep social, search and phone as compact icons next to the menu button */
+@media (max-width: 1200px) {
+  .header .header-call { display: flex; }
+  .header-call-text { display: none; }
+}
 @media (max-width: 767px) {
-  .header-social { display: none; }   /* social links stay in the footer on phones */
-  .header-search { position: static; }
-  .header-search-panel { left: 15px; right: 15px; width: auto; top: 100%; }
+  .header-actions { gap: 6px; }
+  .header-social { gap: 6px; }
+  .header-social a, .header-search-toggle { width: 32px; height: 32px; font-size: 13px; }
+  .header-call .call-icon { width: 32px; height: 32px; border-radius: 50%; font-size: 13px; }
+  .menu-toggle { width: 36px; height: 36px; margin-left: 6px; }
+  .header-search { display: none; }   /* no search on phones */
+  .header-call { margin-left: 12px; }  /* separate the phone from the social icons */
+  /* Phone: rounded square like on desktop, with a soft pulsing ring so it reads as "tap to call" */
+  .header .header-call .call-icon { position: relative; width: 36px; height: 36px; border-radius: 11px; font-size: 15px; background: var(--accent); border: 2px solid var(--accent-light); box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+  .header .header-call .call-icon::after { content: ""; position: absolute; inset: -2px; border-radius: inherit; border: 2px solid var(--accent-light); animation: call-pulse 2s ease-out infinite; }
+  .header .header-call .call-icon i { animation: call-ring 2s ease-in-out infinite; }
+}
+@keyframes call-pulse { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.45); opacity: 0; } }
+@keyframes call-ring { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-14deg); } 20%, 40% { transform: rotate(14deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .header .header-call .call-icon::after, .header .header-call .call-icon i { animation: none; }
+}
+@media (max-width: 480px) {
+  .header-inner { gap: 8px; }
+  .header-actions, .header-social { gap: 4px; }
+  .header-social a, .header-call .call-icon { width: 28px; height: 28px; font-size: 12px; box-shadow: none; }
+  .menu-toggle { width: 32px; height: 32px; margin-left: 4px; }
+  .logo { gap: 5px; }
+  .logo-icon { height: 34px; }
+  .logo-text img { height: 19px; }
+  .logo-text small { display: none; }
 }
 
 /* Search box on the results page */
