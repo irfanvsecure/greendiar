@@ -42,6 +42,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* Header search: opens on hover (click/tap on touch screens), suggests services while typing */
+  const search = document.getElementById("headerSearch");
+  if (search) {
+    const input = search.querySelector("input");
+    const list = search.querySelector(".search-suggest");
+    const data = JSON.parse(document.getElementById("searchData").textContent);
+    let closeTimer, active = -1;
+    const open = () => {
+      clearTimeout(closeTimer);
+      search.classList.add("open");
+      search.querySelector(".header-search-toggle").setAttribute("aria-expanded", "true");
+    };
+    const close = () => {
+      search.classList.remove("open");
+      search.querySelector(".header-search-toggle").setAttribute("aria-expanded", "false");
+    };
+    const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const highlight = (text, q) => {
+      const i = text.toLowerCase().indexOf(q);
+      return i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+    };
+    const render = () => {
+      const q = input.value.trim().toLowerCase();
+      active = -1;
+      if (!q) { list.hidden = true; list.innerHTML = ""; return; }
+      const terms = q.split(/\s+/);
+      const hits = data.filter(d => terms.every(t => (d.t + " " + d.c).toLowerCase().includes(t)))
+        .sort((a, b) => a.t.toLowerCase().indexOf(terms[0]) - b.t.toLowerCase().indexOf(terms[0]))
+        .slice(0, 8);
+      list.innerHTML = hits.length
+        ? hits.map(d => `<li><a href="${esc(d.u)}"><strong>${highlight(d.t, terms[0])}</strong><small>${esc(d.c)}</small></a></li>`).join("")
+        : `<li class="empty">No quick matches, press Enter to search everything.</li>`;
+      list.hidden = false;
+    };
+    search.addEventListener("mouseenter", () => { open(); input.focus({ preventScroll: true }); });
+    search.addEventListener("mouseleave", () => {
+      // Keep it open while the visitor is typing in it
+      closeTimer = setTimeout(() => { if (document.activeElement !== input || !input.value) close(); }, 250);
+    });
+    search.querySelector(".header-search-toggle").addEventListener("click", () => {
+      if (search.classList.contains("open")) close();
+      else { open(); input.focus(); }
+    });
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", e => {
+      const links = [...list.querySelectorAll("a")];
+      if (e.key === "Escape") { close(); input.blur(); return; }
+      if (!links.length || !["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) return;
+      if (e.key === "Enter") { if (active >= 0) { e.preventDefault(); links[active].click(); } return; }
+      e.preventDefault();
+      active = (active + (e.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+      links.forEach((l, i) => l.classList.toggle("active", i === active));
+    });
+    document.addEventListener("click", e => { if (!search.contains(e.target)) close(); });
+  }
+
   /* Counters */
   const animateCount = el => {
     const target = parseFloat(el.dataset.to);
