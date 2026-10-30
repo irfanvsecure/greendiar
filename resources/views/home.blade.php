@@ -6,13 +6,6 @@
   <section class="hero" id="heroSlider" aria-roledescription="carousel" aria-label="Our main services">
     @php($heroSlides = [
       [
-        'image' => 'pool-hero.jpg',
-        'eyebrow' => 'Swimming Pool Construction & Maintenance',
-        'title' => '<span>Build</span> the swimming pool <span>you have always wanted</span>',
-        'text' => 'From design and excavation to tiling, filtration and the first fill, we build beautiful, durable pools and keep them crystal clear all year round.',
-        'link' => ['Pool Services', route('services.index') . '#swimming-pools'],
-      ],
-      [
         'image' => 'walkways-pathways.jpg',
         'eyebrow' => 'Beautiful Garden',
         'title' => '<span>Transform</span> your outdoor space <span>into a lush paradise</span>',
@@ -25,6 +18,13 @@
         'title' => '<span>Shade, comfort</span> and style <span>for outdoor living</span>',
         'text' => 'Modern aluminium and warm timber pergolas, gazebos and outdoor kitchens, designed and built to make the most of your outdoor space.',
         'link' => ['Outdoor Living', route('services.index') . '#pergolas-outdoor-living'],
+      ],
+      [
+        'image' => 'pool-hero.jpg',
+        'eyebrow' => 'Swimming Pool Construction & Maintenance',
+        'title' => '<span>Build</span> the swimming pool <span>you have always wanted</span>',
+        'text' => 'From design and excavation to tiling, filtration and the first fill, we build beautiful, durable pools and keep them crystal clear all year round.',
+        'link' => ['Pool Services', route('services.index') . '#swimming-pools'],
       ],
       [
         'image' => 'patios-decks.jpg',
