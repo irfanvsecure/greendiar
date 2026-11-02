@@ -26,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   toggle.addEventListener("click", () => {
     nav.classList.toggle("open");
     toggle.classList.toggle("active");
+    // Focus the nav search input when menu opens (mobile UX)
+    if (nav.classList.contains("open") && window.innerWidth <= 1024) {
+      const navInput = document.querySelector(".nav-search-form input");
+      if (navInput) setTimeout(() => navInput.focus({ preventScroll: true }), 400);
+    }
   });
   document.querySelectorAll(".has-sub > a").forEach(link => {
     link.addEventListener("click", e => {
@@ -41,6 +46,46 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.classList.remove("active");
     });
   });
+
+  /* Nav drawer search (mobile) — reuses the same searchData as the desktop search */
+  const navSearchForm = document.querySelector(".nav-search-form");
+  if (navSearchForm) {
+    const navInput = navSearchForm.querySelector("input");
+    const navList = document.querySelector(".nav-search-suggest");
+    const dataEl = document.getElementById("searchData");
+    if (dataEl && navInput && navList) {
+      const data = JSON.parse(dataEl.textContent);
+      let active = -1;
+      const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+      const highlight = (text, q) => {
+        const i = text.toLowerCase().indexOf(q);
+        return i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+      };
+      const renderNav = () => {
+        const q = navInput.value.trim().toLowerCase();
+        active = -1;
+        if (!q) { navList.hidden = true; navList.innerHTML = ""; return; }
+        const terms = q.split(/\s+/);
+        const hits = data.filter(d => terms.every(t => (d.t + " " + d.c).toLowerCase().includes(t)))
+          .sort((a, b) => a.t.toLowerCase().indexOf(terms[0]) - b.t.toLowerCase().indexOf(terms[0]))
+          .slice(0, 6);
+        navList.innerHTML = hits.length
+          ? hits.map(d => `<li><a href="${esc(d.u)}"><strong>${highlight(d.t, terms[0])}</strong><small>${esc(d.c)}</small></a></li>`).join("")
+          : `<li class="empty">No quick matches — press Search to see all results.</li>`;
+        navList.hidden = false;
+      };
+      navInput.addEventListener("input", renderNav);
+      navInput.addEventListener("keydown", e => {
+        const links = [...navList.querySelectorAll("a")];
+        if (e.key === "Escape") { navInput.value = ""; renderNav(); return; }
+        if (!links.length || !["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) return;
+        if (e.key === "Enter") { if (active >= 0) { e.preventDefault(); links[active].click(); } return; }
+        e.preventDefault();
+        active = (active + (e.key === "ArrowDown" ? 1 : -1) + links.length) % links.length;
+        links.forEach((l, i) => l.classList.toggle("active", i === active));
+      });
+    }
+  }
 
   /* Header search: opens on hover (click/tap on touch screens), suggests services while typing */
   const search = document.getElementById("headerSearch");

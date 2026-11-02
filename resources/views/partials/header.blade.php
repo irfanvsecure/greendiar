@@ -17,6 +17,15 @@
     @include('partials.logo')
 
     <nav class="nav" id="nav">
+      {{-- Mobile-only search bar inside the drawer (shown when menu is open) --}}
+      <div class="nav-search-wrap" id="navSearch">
+        <form action="{{ route('search') }}" method="get" role="search" class="nav-search-form">
+          <input type="search" name="q" value="{{ request()->routeIs('search') ? request('q') : '' }}" placeholder="Search services..." aria-label="Search the website" autocomplete="off">
+          <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <ul class="nav-search-suggest" role="listbox" hidden></ul>
+      </div>
+
       <ul>
         <li><a href="{{ route('home') }}" @class(['current' => request()->routeIs('home')])>Home</a></li>
         <li><a href="{{ route('about') }}" @class(['current' => request()->routeIs('about')])>About Us</a></li>
@@ -32,9 +41,20 @@
         @endif
         <li><a href="{{ route('contact') }}" @class(['current' => request()->routeIs('contact')])>Contact Us</a></li>
       </ul>
+
+      {{-- Social icons moved here — visible only in mobile drawer --}}
+      <div class="nav-follow">
+        <span class="nav-follow-label">Follow Us</span>
+        <div class="nav-social">
+          @foreach (config('site.social') as $icon => $url)
+            <a href="{{ $url }}" aria-label="{{ $icon }}"><i class="fa-brands fa-{{ $icon }}"></i></a>
+          @endforeach
+        </div>
+      </div>
     </nav>
 
     <div class="header-actions">
+      {{-- Social icons hidden on mobile (moved to nav drawer) --}}
       <div class="header-social">
         @foreach (config('site.social') as $icon => $url)
           <a href="{{ $url }}" aria-label="{{ $icon }}"><i class="fa-brands fa-{{ $icon }}"></i></a>
