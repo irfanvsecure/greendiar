@@ -34,10 +34,10 @@ return [
     ],
 
     // Show only the under construction page on the live domain (greendiar.ae). Set to false to launch the site.
-    'under_construction' => true,
+    'under_construction' => false,
 
     // Show the Projects page, its menu links and the home page projects section.
-    'show_projects' => false,
+    'show_projects' => true,
 
     // YouTube embed URL for the "Watch our projects" play button. Leave empty to hide the button.
     'video_url' => '',
