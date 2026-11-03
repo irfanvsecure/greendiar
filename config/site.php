@@ -37,7 +37,7 @@ return [
     'under_construction' => false,
 
     // Show the Projects page, its menu links and the home page projects section.
-    'show_projects' => true,
+    'show_projects' => false,
 
     // YouTube embed URL for the "Watch our projects" play button. Leave empty to hide the button.
     'video_url' => '',
