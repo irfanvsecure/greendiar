@@ -28,9 +28,9 @@ return [
     ],
 
     'social' => [
-        'facebook-f' => '#',
-        'instagram' => '#',
-        'tiktok' => '#',
+        'facebook-f' => 'https://www.facebook.com/share/1LsFnBfUDW/?mibextid=wwXIfr',
+        'instagram' => 'https://www.instagram.com/greendiar_official?psln=c2s0NjV3Ym92dnYz&utm_source=qr',
+        'tiktok' => 'https://www.tiktok.com/@greendiar_official?_r=1&_t=ZS-9B4MydUr3Rd',
     ],
 
     // Show only the under construction page on the live domain (greendiar.ae). Set to false to launch the site.
