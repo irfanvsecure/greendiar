@@ -364,9 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
         if (!res.ok) throw new Error();
-        status.textContent = data.message || "Thank you! Your message has been sent.";
-        status.classList.add("ok");
-        form.reset();
+        window.location.href = "/thank-you";
       } catch {
         status.textContent = "Sorry, something went wrong. Please call or email us instead.";
         status.classList.add("fail");
