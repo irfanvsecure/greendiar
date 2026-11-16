@@ -48,7 +48,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="{{ asset('assets/js/script.js') }}"></script>
+  <script src="{{ asset('assets/js/script.js') }}?v=2"></script>
   <script src="{{ asset('assets/js/animations.js') }}"></script>
   @stack('scripts')
 </body>
