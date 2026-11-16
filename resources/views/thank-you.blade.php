@@ -3,7 +3,7 @@
 @section('title', 'Thank You – ' . config('app.name'))
 @section('description', 'Thank you for your appointment request. Green Diar will contact you to confirm your site visit or quotation.')
 
-@stack('styles')
+@push('styles')
 <style>
   .thank-you-hero {
     position: relative;
@@ -166,14 +166,14 @@
     .thank-you-actions .btn { width: 100%; justify-content: center; }
   }
 </style>
-@endstack
+@endpush
 
 @section('content')
 
-  @include('partials.page-header', ['title' => ['Thank', 'You'], 'crumbs' => ['Home' => route('home'), 'Contact Us' => route('contact'), 'Thank You' => null]])
+  @include('partials.page-header', ['title' => ['Thank', 'You'], 'crumbs' => ['Contact Us' => route('contact'), 'Thank You' => null]])
 
   <section class="section thank-you">
-    <div class="container thank-you-inner reveal">
+    <div class="container thank-you-inner">
       <div class="thank-you-wrap">
 
         <div class="thank-you-hero">
@@ -215,7 +215,7 @@
             </div>
           </div>
 
-          <div class="thank-you-actions reveal">
+          <div class="thank-you-actions">
             <a href="{{ route('home') }}" class="btn btn-accent">Back to Home <i class="fa-solid fa-arrow-right"></i></a>
             <a href="{{ route('contact') }}#appointment" class="btn btn-outline-dark">Book Another Appointment <i class="fa-solid fa-calendar-plus"></i></a>
           </div>
