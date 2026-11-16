@@ -1329,3 +1329,9 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 /* Stacked stats card: counter lines up with the "Planning a pool..." text below it */
 @media (max-width: 1024px) { .stats-left:has(.counter-feature) { justify-content: flex-start; padding: 40px; } }
 @media (max-width: 767px) { .stats-left:has(.counter-feature) { padding: 28px; } }
+.thank-you-hero h2{
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+}
