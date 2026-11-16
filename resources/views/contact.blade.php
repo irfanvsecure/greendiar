@@ -71,8 +71,9 @@
           </div>
           <div class="form-row time-row">
             <div @class(['field', 'invalid' => $errors->has('date')])>
-              <label for="date">Date</label>
+              <label for="date" class="visible-label">Date</label>
               <input type="date" id="date" name="date" value="{{ old('date') }}" min="{{ now()->toDateString() }}" required>
+              <span class="date-hint">Select appointment date</span>
               @error('date')<span class="error">{{ $message }}</span>@enderror
             </div>
             <div @class(['field', 'invalid' => $errors->has('hour')])>

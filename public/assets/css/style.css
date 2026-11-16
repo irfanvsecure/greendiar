@@ -800,6 +800,44 @@ html.lenis { scroll-behavior: auto; }
   min-height: 58px;
   padding: 16px 20px;
   font-size: 16px;
+  background: var(--white);
+  color: var(--heading);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Make mobile-native date picker visible with clear styling */
+.field input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(50%);
+  cursor: pointer;
+}
+
+/* Fallback hint when date input shows empty on mobile */
+.field input[type=date]:placeholder-shown,
+.field input[type=date][value=""] {
+  background-image: linear-gradient(to right, var(--bg-tint) 0%, var(--bg-tint) 100%);
+}
+
+.visible-label {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 6px;
+}
+
+.date-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--text);
+  margin-top: 4px;
 }
 
 /* Prevent mobile browsers from zooming on date/time inputs */
