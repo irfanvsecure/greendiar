@@ -20,7 +20,7 @@
     position: absolute;
     inset: -20%;
     background: url('{{ asset('assets/images/footer-bg.jpg') }}') center / cover no-repeat;
-    opacity: .15;
+    opacity: .10;
     pointer-events: none;
     z-index: 0;
     border-radius: 30px;
@@ -43,6 +43,10 @@
     backdrop-filter: blur(6px);
   }
   .thank-you-badge i { font-size: 16px; }
+  .thank-you-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+  }
   .thank-you-hero h2 {
     font-size: clamp(28px, 5vw, 42px);
     font-weight: 800;
@@ -170,7 +174,7 @@
 
   <section class="section thank-you">
     <div class="container thank-you-inner reveal">
-      <div class="thank-you-wrap" style="max-width: 900px; margin: 0 auto;">
+      <div class="thank-you-wrap">
 
         <div class="thank-you-hero">
           <span class="thank-you-badge"><i class="fa-regular fa-circle-check"></i> Request Received</span>
