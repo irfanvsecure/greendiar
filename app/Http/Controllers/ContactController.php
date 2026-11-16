@@ -70,6 +70,6 @@ class ContactController extends Controller
 
         return $request->expectsJson()
             ? response()->json(['message' => $status])
-            : back()->with('status', $status);
+            : redirect()->route('thank-you');
     }
 }

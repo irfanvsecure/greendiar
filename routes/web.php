@@ -12,4 +12,5 @@ Route::view('/privacy-policy', 'legal.privacy')->name('privacy');
 Route::view('/terms-and-conditions', 'legal.terms')->name('terms');
 Route::get('/search', SearchController::class)->name('search');
 Route::view('/contact', 'contact')->name('contact');
+Route::view('/thank-you', 'thank-you')->name('thank-you');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:5,1');
