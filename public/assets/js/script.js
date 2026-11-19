@@ -335,6 +335,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = [...form.querySelectorAll("input:not([type=hidden]), select")];
     fields.forEach(i => i.addEventListener(i.tagName === "SELECT" ? "change" : "blur", () => check(i)));
 
+    // Date field: toggles the "Select Date *" placeholder (CSS) depending on whether a date is picked
+    form.querySelectorAll("input[type=date]").forEach(d => {
+      const sync = () => d.classList.toggle("has-value", !!d.value);
+      ["input", "change", "blur"].forEach(ev => d.addEventListener(ev, sync));
+      sync();
+    });
+
     form.addEventListener("submit", async e => {
       e.preventDefault();
       const valid = fields.map(check).every(Boolean);
