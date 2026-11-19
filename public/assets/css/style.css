@@ -832,8 +832,10 @@ html.lenis { scroll-behavior: auto; }
   opacity: 0;
   cursor: pointer;
 }
-/* Empty and not focused: hide "mm/dd/yyyy" and show our placeholder instead */
-.field input[type=date]:not(.has-value):not(:focus) { color: transparent; }
+/* Native text differs per browser (blank on iOS, "Nov 19, 2026" on Safari, "mm/dd/yyyy" on Chrome),
+   so hide it and always show our own "mm/dd/yyyy" text, filled in by script.js */
+.field input[type=date] { color: transparent; -webkit-text-fill-color: transparent; }
+.field input[type=date]::-webkit-datetime-edit { color: transparent; }
 .date-placeholder {
   position: absolute;
   top: 0;
@@ -842,11 +844,10 @@ html.lenis { scroll-behavior: auto; }
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: var(--text);
+  letter-spacing: .02em;
+  color: var(--heading);
   pointer-events: none;
 }
-.date-field input.has-value ~ .date-placeholder,
-.date-field input:focus ~ .date-placeholder { display: none; }
 
 /* Prevent mobile browsers from zooming on date/time inputs */
 .field input[type=date],

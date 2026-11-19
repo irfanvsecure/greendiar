@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v=3">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v=4">
   @stack('styles')
 </head>
 <body>
@@ -48,7 +48,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-  <script src="{{ asset('assets/js/script.js') }}?v=3"></script>
+  <script src="{{ asset('assets/js/script.js') }}?v=4"></script>
   <script src="{{ asset('assets/js/animations.js') }}"></script>
   @stack('scripts')
 </body>

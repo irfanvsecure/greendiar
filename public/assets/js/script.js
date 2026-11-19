@@ -335,10 +335,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = [...form.querySelectorAll("input:not([type=hidden]), select")];
     fields.forEach(i => i.addEventListener(i.tagName === "SELECT" ? "change" : "blur", () => check(i)));
 
-    // Date field: toggles the "Select Date *" placeholder (CSS) depending on whether a date is picked
+    // Date field: browsers show the native text differently, so it is hidden (CSS) and we show
+    // "mm/dd/yyyy" or the picked date in the same format on every device
     form.querySelectorAll("input[type=date]").forEach(d => {
-      const sync = () => d.classList.toggle("has-value", !!d.value);
+      const label = d.parentElement.querySelector(".date-placeholder");
+      const sync = () => {
+        const [y, m, day] = (d.value || "").split("-");
+        if (label) label.textContent = d.value ? `${m}/${day}/${y}` : "mm/dd/yyyy";
+      };
       ["input", "change", "blur"].forEach(ev => d.addEventListener(ev, sync));
+      // Open the calendar on a click anywhere in the box (where the browser supports it)
+      d.addEventListener("click", () => { try { d.showPicker(); } catch {} });
       sync();
     });
 

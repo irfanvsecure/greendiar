@@ -72,8 +72,8 @@
           <div class="form-row time-row">
             <div @class(['field', 'date-field', 'invalid' => $errors->has('date')])>
               <label for="date">Date</label>
-              <input type="date" id="date" name="date" value="{{ old('date') }}" min="{{ now()->toDateString() }}" required @class(['has-value' => old('date')])>
-              <span class="date-placeholder" aria-hidden="true">Select Date *</span>
+              <input type="date" id="date" name="date" value="{{ old('date') }}" min="{{ now()->toDateString() }}" required>
+              <span class="date-placeholder" aria-hidden="true">mm/dd/yyyy</span>
               @error('date')<span class="error">{{ $message }}</span>@enderror
             </div>
             <div @class(['field', 'invalid' => $errors->has('hour')])>
